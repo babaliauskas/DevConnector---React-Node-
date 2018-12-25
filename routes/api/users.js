@@ -7,20 +7,25 @@ const passport = require('passport');
 
 const keys = require('../../config/keys');
 const User = require('../../models/User');
-
-// @route         GET api/users/test
-// @description   Test users route
-// @access        Public
-router.get('/test', (req, res) => res.json({ msg: 'Users Works' }));
+const validateRegisterInput = require('../../validation/register');
+const validateLoginInput = require('../../validation/login');
 
 // @route         GET api/users/register
 // @description   Register route
 // @access        Public
 router.post('/register', (req, res) => {
+  const { errors, isValid } = validateRegisterInput(req.body);
+
+  // Check Validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   // checking if email is not exist in the database
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
-      return res.status(400).json({ email: 'Email already exists' });
+      errors.email = 'Email already exists';
+      return res.status(400).json(errors);
     } else {
       // Gets avatar image
       const avatar = gravatar.url(req.body.email, {
@@ -36,6 +41,7 @@ router.post('/register', (req, res) => {
         avatar
       });
 
+      // Hash password
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
           if (err) throw err;
@@ -54,6 +60,13 @@ router.post('/register', (req, res) => {
 // @description   Login route / Returning JWT Token
 // @access        Public
 router.post('/login', (req, res) => {
+  const { errors, isValid } = validateLoginInput(req.body);
+
+  // Check Validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   const email = req.body.email;
   const password = req.body.password;
 
@@ -61,7 +74,8 @@ router.post('/login', (req, res) => {
   User.findOne({ email }).then(user => {
     // Check for user
     if (!user) {
-      return res.status(404).json({ email: 'User not found' });
+      errors.email = 'User not found';
+      return res.status(404).json(errors);
     }
 
     // Check Password
@@ -83,7 +97,8 @@ router.post('/login', (req, res) => {
           }
         );
       } else {
-        return res.status(400).json({ password: 'Password incorrect' });
+        errors.password = 'Password incorrect';
+        return res.status(400).json(errors);
       }
     });
   });
