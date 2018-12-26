@@ -9,7 +9,7 @@ module.exports = function validateRegisterInput(data) {
   data.password = !isEmpty(data.password) ? data.password : '';
   data.password2 = !isEmpty(data.password2) ? data.password2 : '';
 
-  // Name Validations
+  // Name Validators
   if (!Validator.isLength(data.name, { min: 2, max: 30 })) {
     errors.name = 'Name must be between 2 and 30 characters';
   }
@@ -17,7 +17,7 @@ module.exports = function validateRegisterInput(data) {
     errors.name = 'Name field is required';
   }
 
-  // Email Validations
+  // Email Validators
   if (Validator.isEmpty(data.email)) {
     errors.email = 'Email field is required';
   }
@@ -25,7 +25,7 @@ module.exports = function validateRegisterInput(data) {
     errors.email = 'Email is invalid';
   }
 
-  // Password Validations
+  // Password Validators
   if (Validator.isEmpty(data.password)) {
     errors.password = 'Password field is required';
   }
@@ -33,7 +33,7 @@ module.exports = function validateRegisterInput(data) {
     errors.password = 'Password must be at least 6 characters';
   }
 
-  // Password2 Validations
+  // Password2 Validators
   if (Validator.isEmpty(data.password2)) {
     errors.password2 = 'Confirm Password field is required';
   }
