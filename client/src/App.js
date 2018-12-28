@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import { Provider } from 'react-redux';
 
@@ -13,6 +13,7 @@ import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Dashboard from './components/dashboard/Dashboard';
+import PrivateRoute from './components/common/PrivateRoute';
 import store from './store';
 
 // Check for token
@@ -47,7 +48,10 @@ class App extends Component {
             <div className="container">
               <Route path="/register" component={Register} />
               <Route path="/login" component={Login} />
-              <Route path="/dashboard" component={Dashboard} />
+              {/* Need to wrap all private routs using Switch */}
+              <Switch>
+                <PrivateRoute path="/dashboard" component={Dashboard} />
+              </Switch>
             </div>
             <Footer />
           </div>
