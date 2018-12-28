@@ -14,6 +14,7 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Dashboard from './components/dashboard/Dashboard';
 import PrivateRoute from './components/common/PrivateRoute';
+import CreateProfile from './components/create-profile/CreateProfile';
 import store from './store';
 
 // Check for token
@@ -51,6 +52,10 @@ class App extends Component {
               {/* Need to wrap all private routs using Switch */}
               <Switch>
                 <PrivateRoute path="/dashboard" component={Dashboard} />
+                <PrivateRoute
+                  path="/create-profile"
+                  component={CreateProfile}
+                />
               </Switch>
             </div>
             <Footer />
