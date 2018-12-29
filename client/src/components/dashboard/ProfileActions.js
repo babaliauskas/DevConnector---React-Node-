@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const ProfileActions = () => {
@@ -19,7 +18,5 @@ const ProfileActions = () => {
     </div>
   );
 };
-
-ProfileActions.propTypes = {};
 
 export default ProfileActions;

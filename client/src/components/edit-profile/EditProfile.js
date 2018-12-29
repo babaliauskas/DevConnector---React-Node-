@@ -51,7 +51,7 @@ class EditProfile extends Component {
       // If profile field doesn't exist, make empty string
       profile.company = !isEmpty(profile.company) ? profile.company : '';
       profile.website = !isEmpty(profile.website) ? profile.website : '';
-      profile.locaiton = !isEmpty(profile.locaiton) ? profile.locaiton : '';
+      profile.location = !isEmpty(profile.location) ? profile.location : '';
       profile.githubusername = !isEmpty(profile.githubusername)
         ? profile.githubusername
         : '';
@@ -145,7 +145,7 @@ class EditProfile extends Component {
             placeholder="Twitter Profile URL"
             name="twitter"
             icon="fab fa-twitter"
-            value={this.state.twitter}
+            value={twitter}
             onChange={this.onChange}
             error={errors.twitter}
           />
