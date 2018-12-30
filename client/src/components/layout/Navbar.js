@@ -24,7 +24,7 @@ class Navbar extends Component {
           </Link>
         </li>
         <li className="nav-item">
-          <a href="#" onClick={this.onLogoutClick} className="nav-link">
+          <a onClick={this.onLogoutClick} className="nav-link">
             <img
               src={user.avatar}
               alt={user.name}
@@ -71,7 +71,7 @@ class Navbar extends Component {
           <div className="collapse navbar-collapse" id="mobile-nav">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <Link to="profiles" className="nav-link">
+                <Link to="/profiles" className="nav-link">
                   Developers
                 </Link>
               </li>

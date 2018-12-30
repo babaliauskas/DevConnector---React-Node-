@@ -147,7 +147,7 @@ class EditProfile extends Component {
             name="twitter"
             icon="fab fa-twitter"
             onChange={this.onChange}
-            value={this.state.twitter}
+            value={twitter}
             error={errors.twitter}
           />
           <InputGroup
