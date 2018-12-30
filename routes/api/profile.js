@@ -225,7 +225,7 @@ router.delete(
       // Get remove index
       const removeIndex = profile.experience
         .map(item => item.id)
-        .indexOf(req.params.epx_id);
+        .indexOf(req.params.exp_id);
 
       // Splice out of array
       profile.experience.splice(removeIndex, 1);
