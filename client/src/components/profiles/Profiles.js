@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { getProfiles } from '../../actions/profileActions';
 import Spinner from '../common/Spinner';
+import ProfileItem from '../profiles/ProfileItem';
 
 export class Profiles extends Component {
   componentDidMount = () => {
@@ -19,7 +20,9 @@ export class Profiles extends Component {
       profileItems = <Spinner />;
     } else {
       if (profiles.length > 0) {
-        profileItems = <h1>PROFILES HERE</h1>;
+        profileItems = profiles.map(profile => (
+          <ProfileItem key={profile._id} profile={profile} />
+        ));
       } else {
         profileItems = <h4>No profiles found...</h4>;
       }
