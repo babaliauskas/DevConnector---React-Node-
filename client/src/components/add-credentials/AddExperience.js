@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 
 import TextFieldGroup from '../common/TextFieldGroup';
-// import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { addExperience } from '../../actions/profileActions';
 
 class AddExperience extends Component {
